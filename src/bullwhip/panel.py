@@ -28,7 +28,7 @@ class Spec:
     deflate: bool = False
     freq: str = "M"  # or "Q"
 
-    def but(self, **kw) -> "Spec":
+    def but(self, **kw) -> Spec:
         return replace(self, **kw)
 
 
@@ -75,10 +75,10 @@ def evaluate(ind: Industry, spec: Spec) -> dict:
     base = {"tier": ind.tier, "code": ind.code}
     # cut levels at the window end before transforming; earlier months stay for the lags
     prod, demand = prod.loc[:end], demand.loc[:end]
-    if spec.transform in ("logdiff", "yoy"):
-        if (pd.concat([prod, demand]) <= 0).any():  # e.g. clothing stores, April 2020: drawdown exceeded sales
-            return {**base, "n": 0, "ratio": float("nan"), "bf_p": float("nan"),
-                    "seasonality": float("nan"), "undefined": "nonpositive production"}
+    # e.g. clothing stores, April 2020: the inventory drawdown exceeded cost-adjusted sales
+    if spec.transform in ("logdiff", "yoy") and (pd.concat([prod, demand]) <= 0).any():
+        return {**base, "n": 0, "ratio": float("nan"), "bf_p": float("nan"),
+                "seasonality": float("nan"), "undefined": "nonpositive production"}
     p, d = m.paired(prod, demand, spec.transform, False, start, end)
     # predictable seasonality is a property of the unadjusted demand (CRS eq. 2)
     seas = m.seasonality_ratio(d) if spec.freq == "M" else float("nan")

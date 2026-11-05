@@ -10,8 +10,9 @@ import hashlib
 import io
 import json
 import time
+import urllib.error
 import urllib.request
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -34,7 +35,7 @@ def _download(sid: str, retries: int = 3) -> bytes:
             if not body.startswith(b"observation_date"):
                 raise ValueError(f"{sid}: unexpected response body {body[:80]!r}")
             return body
-        except Exception as exc:  # network or format error: retry, then raise
+        except (urllib.error.URLError, OSError, ValueError) as exc:  # retry, then raise
             last = exc
             time.sleep(1.5 * (attempt + 1))
     raise RuntimeError(f"download failed for {sid}") from last
@@ -54,7 +55,7 @@ def parse(body: bytes, sid: str) -> pd.Series:
     return s.dropna()
 
 
-@functools.lru_cache(maxsize=None)
+@functools.cache
 def _cached(sid: str, mtime: float) -> pd.Series:
     """Parse a cached file once per modification time."""
     return parse((RAW / f"{sid}.csv").read_bytes(), sid)
@@ -71,7 +72,7 @@ def fetch(sid: str, refresh: bool = False) -> pd.Series:
         manifest[sid] = {
             "sha256": hashlib.sha256(body).hexdigest(),
             "bytes": len(body),
-            "fetched_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "fetched_utc": datetime.now(UTC).isoformat(timespec="seconds"),
             "url": URL.format(sid=sid),
         }
         MANIFEST.write_text(json.dumps(dict(sorted(manifest.items())), indent=2) + "\n")

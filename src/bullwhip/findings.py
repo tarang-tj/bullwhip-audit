@@ -102,6 +102,8 @@ def build() -> Numbers:
     for t in TIERS:
         n.add(f"cellmaj_{t}", float((kc[t] > 0.5).mean()), "pct",
               f"{t}: share of seasonality-kept spec cells where most industries amplify")
+        n.add(f"cellmaj_n_{t}", int((kc[t] > 0.5).sum()), "int",
+              f"{t}: count of seasonality-kept spec cells where most industries amplify")
     sens = []
     for dim in ("window", "margin", "deflate", "transform", "freq"):
         s = kept.groupby(dim)[["tier", "ratio"]].apply(share_amp)
@@ -170,6 +172,9 @@ def _shocks(n: Numbers) -> None:
         k = pick.get((r.code, r.window, r.demand))
         if k:
             n.add(k, r.ratio, "f2", f"{r.chain} {r.tier} {r.code} {r.window} vs {r.demand}")
+            if k == "chain_elec_orders_post":
+                n.add("elec_orders_multiple", 1 / r.ratio, "f1",
+                      "electronics new-orders variance as a multiple of production variance")
 
 
 if __name__ == "__main__":
