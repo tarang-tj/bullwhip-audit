@@ -14,7 +14,7 @@ Does order volatility really grow at each step up a supply chain? This project t
 FRED (keyless CSV, 112 Census series) -> data/raw + sha256 manifest
   -> registry.py   44 non-overlapping industries + 3 aggregate tiers, live titles
   -> panel.py      production = sales + change in inventory; one measurement spec
-  -> grid.py       11,880 cells: window x margin x deflator x transform x frequency x adjustment
+  -> grid.py       11,880 rows (11,016 industry cells): window x margin x deflator x transform x frequency x adjustment
   -> findings.py   every printed number -> outputs/numbers.csv
   -> memo.py       docs/findings.md from a template; numbers come only from numbers.csv
   -> page.py       docs/index.html
