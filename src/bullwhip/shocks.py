@@ -31,7 +31,8 @@ def aggregate_rolling(months: int = 60) -> pd.DataFrame:
     out = {}
     for ind in AGGREGATES:
         prod, dem = flows(ind, Spec())
-        out[ind.tier] = rolling_ratio(prod, dem, months)
+        end = "2025-12"  # same last month as every other window
+        out[ind.tier] = rolling_ratio(prod.loc[:end], dem.loc[:end], months)
     return pd.DataFrame(out)
 
 
@@ -42,8 +43,10 @@ def is_ratio(tier: str) -> pd.Series:
 
 
 def shock_table() -> pd.DataFrame:
-    """For each shock and tier: I/S before (12-month mean ending at the start), the peak and
-    trough inside the window, and the swing from trough to peak in percent of the baseline."""
+    """For each shock and tier: I/S before (12-month mean ending at the start), the highest and
+    lowest value inside the window, and their range as a share of the baseline. The range is
+    order-free: in COVID the high comes before the low. The 2020-21 and 2021-23 windows overlap
+    in the first half of 2021."""
     rows = []
     for shock, (start, end) in SHOCKS.items():
         for tier in SA_LEVELS:

@@ -2,7 +2,7 @@
 
 Does order volatility really grow at each step up a supply chain? This project tests the bullwhip effect on 34 years of US Census retail, wholesale and manufacturing data. It replicates Cachon, Randall and Schmidt (2007) and extends the test through 2025.
 
-**Finding.** The 2007 pattern holds as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications; most retail industries amplify in none of them. Remove seasonality and every tier looks like a bullwhip. In COVID, retail took the largest inventory swing of any tier.
+**Finding.** The 2007 pattern holds as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications; most retail industries amplify in none of them. Manufacturing changed: it mostly smoothed in 1993 to 2004 but amplifies under most settings since 2005. Remove seasonality and most industries in every tier look like amplifiers. In COVID, retail took the largest inventory swing of any tier.
 
 - Memo: [`docs/findings.md`](docs/findings.md)
 - Page: [`docs/index.html`](docs/index.html) (self-contained, four interactive charts)

@@ -60,3 +60,20 @@ def test_parse_drops_missing_marker():
 
 def test_cache_matches_manifest():
     assert fetch.verify_cache() == []
+
+
+def test_memo_check_rejects_unsourced_numbers():
+    # holes found in review: citation numbers and year-range suffixes passed anywhere
+    from src.bullwhip.memo import unsourced
+    assert unsourced("Retail fell 74% in the window.")
+    assert unsourced("| Tier | 2020-21 |")
+    assert unsourced("see `table 3`")
+    assert not unsourced("In 2008 the {{agg_retail}} ratio held.")
+
+
+def test_orders_are_margin_scaled():
+    # bug found in review: orders stayed at selling value while production was cost-scaled
+    ind = LOOKUP[("manufacturing", "31S")]
+    _, d0 = panel.flows(ind, panel.Spec(demand="orders"))
+    _, d3 = panel.flows(ind, panel.Spec(demand="orders", margin=0.3))
+    assert (d3 / d0).round(12).eq(0.7).all()

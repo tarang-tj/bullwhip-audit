@@ -19,8 +19,17 @@ def production(sales: pd.Series, inventory: pd.Series, margin: float = 0.0) -> p
     if not 0.0 <= margin < 1.0:
         raise ValueError("margin must be in [0, 1)")
     s, i = sales.align(inventory, join="inner")
-    prod = (1.0 - margin) * s + i - i.shift(1)
+    lag = regular(i).shift(1).reindex(i.index)  # calendar lag: a missing month gives NaN
+    prod = (1.0 - margin) * s + i - lag
     return prod.dropna().rename("production")
+
+
+def regular(x: pd.Series) -> pd.Series:
+    """Reindex to a gap-free calendar (month or quarter starts) so lags never bridge a gap."""
+    if len(x) < 2:
+        return x
+    quarterly = (x.index[1] - x.index[0]).days > 45
+    return x.asfreq("QS" if quarterly else "MS")
 
 
 def transform(x: pd.Series, how: str = "logdiff") -> pd.Series:
@@ -29,11 +38,12 @@ def transform(x: pd.Series, how: str = "logdiff") -> pd.Series:
         raise ValueError(f"unknown transform {how}")
     if how in ("logdiff", "yoy") and (x <= 0).any():
         raise ValueError(f"{x.name}: non-positive values cannot be logged")
+    r = regular(x)
     if how == "logdiff":
-        return np.log(x).diff().dropna()
+        return np.log(r).diff().dropna()
     if how == "yoy":
-        return np.log(x).diff(12).dropna()
-    return x.diff().dropna()
+        return np.log(r).diff(12).dropna()
+    return r.diff().dropna()
 
 
 def deseasonalize(x: pd.Series) -> pd.Series:

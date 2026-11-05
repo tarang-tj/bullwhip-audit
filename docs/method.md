@@ -29,7 +29,12 @@ Cachon, Randall and Schmidt (2007), *In Search of the Bullwhip Effect*, MSOM 9(4
 - **Undefined cells.** Clothing stores (448) in April 2020: under 30 and 45% margins, imputed production is negative and cannot be logged. Those cells are recorded as undefined, never patched. They affect only windows that include 2020.
 - **Windows.** Levels are cut at the window end before transforming. Months before the window start stay in, so the first difference has a lag.
 - **Quarterly.** Monthly flows are summed to complete calendar quarters only.
+- **Gaps.** Lags and differences run on a gap-free calendar, so a missing month (CPIAUCNS has no 2025-10 value) produces a missing value, never a two-month difference.
 
 ## Series probe (2026-11-05)
 
 Wholesale `S{naics}SM144NCEN` / `I{naics}IM144NCEN`. Retail `MRTSSM{naics}USN` / `MRTSIM{naics}USN`. Manufacturing M3 NSA `U{code}VS` (shipments), `U{code}TI` (total inventories), `U{code}NO` (new orders, published for 31S to 37S). Each of these returned at least 398 monthly rows starting 1992-01. The full list with titles is in `data/registry.csv`.
+
+## Orders coverage (checked 2026-11-05)
+
+FRED's note on `U34SNO` (computers and electronics new orders) says: "Data on New Orders for the Semiconductor Industry are not available." Its note on `U34SVS` (shipments) says semiconductor shipments "are included in Computers and Electronic Products." The two series cover different industries, so the memo reports no orders-based ratio for 34S. `U36SNO` (transportation equipment) carries no such note.

@@ -47,7 +47,7 @@ def flows(ind: Industry, spec: Spec) -> tuple[pd.Series, pd.Series]:
     if spec.demand == "orders":
         if ind.orders is None:
             raise ValueError(f"{ind.code}: no new-orders series")
-        demand = fetch(ind.orders)
+        demand = (1.0 - spec.margin) * fetch(ind.orders)  # orders are booked at selling value
         if spec.deflate:
             demand = _deflate(demand, ind.tier)
     else:

@@ -83,3 +83,13 @@ def test_bootstrap_blocks_widen_ci_on_persistent_series():
     w1 = m.block_bootstrap(p, d, block=1, reps=400)
     w24 = m.block_bootstrap(p, d, block=24, reps=400)
     assert (w24["hi"] - w24["lo"]) > 1.3 * (w1["hi"] - w1["lo"])
+
+
+def test_lags_do_not_bridge_a_missing_month():
+    # bug found in review: CPIAUCNS lacks 2025-10, and a positional shift(1) treated
+    # November minus September as one month
+    idx = _months(6).delete(3)
+    s = pd.Series([10.0, 11, 12, 14, 15], idx)
+    prod = m.production(s, s)
+    assert idx[3] not in prod.index and idx[4] in prod.index
+    assert idx[3] not in m.transform(s, "logdiff").index

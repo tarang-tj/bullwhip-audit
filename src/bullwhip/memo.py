@@ -15,21 +15,28 @@ from src.bullwhip.fetch import ROOT
 
 TEMPLATE = ROOT / "docs" / "findings.template.md"
 MEMO = ROOT / "docs" / "findings.md"
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August",
+          "September", "October", "November", "December"]
 TOKEN = re.compile(r"\{\{([a-z0-9_]+)\}\}")
 ALLOW = re.compile(
     r"\b(19|20)\d\d\b"            # years
-    r"|`[^`]*`"                   # code spans (paths, NAICS codes)
-    r"|\b(457|479|74)\b|9\(4\)|Table 1\b"                     # citation details
-    r"|\bM3\b|\bsha256\b|-(09|21|23)\b"                     # identifiers, year-range suffixes
+    r"|`[^`\d]*`"                 # code spans without digits (paths, commands)
+    r"|\bM3\b|\bsha256\b"          # survey and hash names
     r"|95%|\b(2,000|12-month|60-month|0, 15, 30 and 45 percent|3 time windows|4 gross"
     r"|3 detrending|hypothesis 1|above 1|apart from 1|toward 1)\b"  # fixed method parameters
     r"|^\s*\d\.\s|\*\*\d\.\s"     # list and finding numbers
     r"|https?://\S+", re.MULTILINE)
+SOURCE_LINE = re.compile(r"^- (Cachon|US Census)")  # citation details live only here
 
 
 def fmt(value: float, kind: str) -> str:
     if kind == "pct":
         return f"{round(100 * value)}%"
+    if kind == "ym":
+        y, mo = divmod(round(value), 100)
+        return f"{MONTHS[mo - 1]} {y}"
+    if kind == "pts":
+        return f"{round(100 * value)} percentage points"
     if kind == "int":
         return f"{round(value):,}"
     if kind == "f1":
@@ -59,7 +66,8 @@ def render() -> str:
 
 def unsourced(template: str) -> list[str]:
     """Digits in the template that are neither a {{token}} nor allowlisted."""
-    stripped = ALLOW.sub(" ", TOKEN.sub(" ", template))
+    lines = [ln for ln in template.splitlines() if not SOURCE_LINE.match(ln)]
+    stripped = ALLOW.sub(" ", TOKEN.sub(" ", "\n".join(lines)))
     return [ln.strip() for ln in stripped.splitlines() if re.search(r"\d", ln)]
 
 

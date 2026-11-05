@@ -8,17 +8,17 @@ Supply chain textbooks teach the bullwhip effect: each step upstream orders more
 
 ## The answer
 
-The CRS pattern holds, and it is stable as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications. Most retail industries amplify in 0 of 96. Remove seasonality, by seasonal adjustment or by year-over-year comparison, and every tier looks like a bullwhip. The manufacturing verdict also depends on a gross-margin assumption that public data no longer pin down.
+For retail and wholesale, the CRS pattern holds and is stable as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications. Most retail industries amplify in 0 of 96. Manufacturing is the tier that changed. In the 1993 to 2004 window CRS studied, most manufacturing industries amplify in only 7 of 32 specifications. Since 2005 they amplify in 28 of 32, though that verdict leans on a gross-margin assumption that public data no longer pin down. Remove seasonality, by seasonal adjustment or by year-over-year comparison, and most industries in every tier look like amplifiers.
 
 ## Data
 
-112 monthly series from the US Census Bureau (Monthly Retail Trade, Monthly Wholesale Trade, and the M3 manufacturers' survey), pulled keyless from FRED and pinned by sha256 in `data/manifest.json`. The panel has 44 non-overlapping industries: 6 retail, 18 merchant wholesale and 20 manufacturing. CRS had 74. FRED carries sales but not inventories for several store types on their own (electronics and appliance stores appear only combined with furniture stores), and overlapping aggregates are left out so no industry is counted twice.
+112 monthly series: 110 from the US Census Bureau (Monthly Retail Trade, Monthly Wholesale Trade, and the M3 manufacturers' survey) and two BLS price indexes, pulled keyless from FRED and pinned by sha256 in `data/manifest.json`. The panel has 44 non-overlapping industries: 6 retail, 18 merchant wholesale and 20 manufacturing. CRS had 74. FRED carries sales but not inventories for several store types on their own (electronics and appliance stores appear only combined with furniture stores), and overlapping aggregates are left out so no industry is counted twice.
 
 ## Method
 
 Following CRS: production (material inflow) = sales + this month's inventory − last month's inventory. The amplification ratio is the variance of production over the variance of demand, after logging and first-differencing both, with no seasonal adjustment. A ratio above 1 means the industry passes on more volatility than it receives. Demand is sales, or new orders where the M3 survey publishes them. Each headline ratio carries a 95% moving-block bootstrap interval (12-month blocks, 2,000 draws), so serial correlation does not overstate precision.
 
-CRS made two adjustments this project cannot reproduce exactly. Sales are at selling price but inventories are at cost, so CRS scaled sales by monthly Census gross margins, which are no longer published in a keyless form. They also deflated by BEA price indexes. Both became grid dimensions instead of fixed choices. The full grid runs every industry under 3 time windows, 4 gross margins (0, 15, 30 and 45 percent), with and without a CPI or PPI deflator, 3 detrending transforms, monthly or quarterly data, and with or without seasonal adjustment: 11,016 industry-level cells. 18 cells are undefined because clothing stores' production went negative in April 2020: store closures drew inventory down by more than the month's cost-adjusted sales.
+CRS made two adjustments this project cannot reproduce exactly. Sales are at selling price but inventories are at cost, so CRS scaled sales by monthly Census gross margins, which are no longer published in a keyless form. They also deflated by BEA price indexes. Both became grid dimensions instead of fixed choices. The full grid runs every industry under 3 time windows, 4 gross margins (0, 15, 30 and 45 percent), with and without a CPI or PPI deflator, 3 detrending transforms, monthly or quarterly data, and with or without seasonal adjustment: 9,504 industry-level cells against sales, plus 1,512 against new orders for the durable manufacturers that report them. Shares below count the sales cells only. 18 cells are undefined because clothing stores' production went negative in April 2020: store closures drew inventory down by more than the month's cost-adjusted sales. Undefined cells are left out of every share's denominator.
 
 ## Findings
 
@@ -32,7 +32,7 @@ CRS made two adjustments this project cannot reproduce exactly. Sales are at sel
 
 Across the margin and deflator settings, the unadjusted shares range from 17% to 33% for retail, 72% to 94% for wholesale, and 10% to 45% for manufacturing. The CRS wholesale figure sits inside our band. Our manufacturing share is below theirs at every margin except the highest one tried.
 
-**2. Seasonality is the choice that decides the answer.** With seasonality kept, 31% of retail cells, 72% of wholesale cells and 41% of manufacturing cells amplify. With it removed, those become 83%, 96% and 75%. Physical flows have to follow the real calendar, so the unadjusted numbers describe what warehouses and plants actually absorb. A year-over-year chart of orders against sales will show a bullwhip that the physical flows do not have.
+**2. Seasonality is the choice that decides the answer.** With seasonality kept, 31% of retail cells, 72% of wholesale cells and 51% of manufacturing cells amplify. With it removed, those become 82%, 96% and 91%. Physical flows have to follow the real calendar, so the unadjusted numbers describe what warehouses and plants actually absorb. A year-over-year chart of orders against sales will show a bullwhip that the physical flows do not have.
 
 <!-- fig:split -->
 
@@ -40,39 +40,40 @@ Across the margin and deflator settings, the unadjusted shares range from 17% to
 
 <!-- fig:season -->
 
-**4. The aggregate tiers.** 1993 to 2025, unadjusted: retail 0.56 (95% interval 0.53 to 0.60), wholesale 1.04 (0.99 to 1.09), manufacturing 0.66 (0.63 to 0.69). Aggregate wholesale cannot be told apart from 1, even though most wholesale industries amplify. Adding industries together cancels part of their individual swings.
+**4. The aggregate tiers.** 1993 to 2025, unadjusted: retail 0.56 (95% interval 0.53 to 0.60), wholesale 1.04 (0.99 to 1.09), manufacturing 0.66 (0.63 to 0.69). Aggregate wholesale cannot be told apart from 1, even though most wholesale industries amplify. One reading, not tested here, is that industry swings partly offset when they are added together.
 
 <!-- fig:industries -->
 
-**5. Since 2005 the tiers have converged toward 1.** Median industry ratio, 1993 to 2004 against 2005 to 2025: retail 0.68 to 0.88, wholesale 1.05 to 0.98, manufacturing 0.80 to 0.95. Retail smoothing weakened most after 2020: the 60-month aggregate retail ratio was 0.59 at the end of 2019 and peaked at 0.78 afterwards.
+**5. Since 2005 the tiers have converged toward 1.** Median industry ratio, 1993 to 2004 against 2005 to 2025: retail 0.68 to 0.88, wholesale 1.05 to 0.98, manufacturing 0.80 to 0.95. These medians use no margin and no deflator. The manufacturing median stays slightly under one on that basis, while with margins and deflation applied most manufacturing industries amplify after 2005. Retail smoothing weakened most after 2020: the 60-month aggregate retail ratio was 0.59 at the end of 2019 and peaked at 0.78 afterwards.
 
 <!-- fig:rolling -->
 
-**6. In the shocks, retail absorbed the most inventory swing.** Trough-to-peak swing in the seasonally adjusted inventory-to-sales ratio, as a share of the prior year's average:
+**6. Each shock hit a different tier hardest.** Range of the seasonally adjusted inventory-to-sales ratio inside each window (highest minus lowest), as a share of the prior year's average. The second and third windows overlap in the first half of 2021.
 
-| Tier | 2008-09 | 2020-21 | 2021-23 |
+| Tier | 2008 to 2009 | 2020 to 2021 | 2021 to 2023 |
 |---|---|---|---|
 | Retail | 17% | 40% | 17% |
 | Wholesale | 23% | 33% | 14% |
 | Manufacturing | 21% | 28% | 9% |
 | Computers and electronics mfg | 18% | 8% | 25% |
 
-In COVID the largest swing was at the store end of the chain, the reverse of a classic bullwhip. In the chip shortage and restock, computers and electronics manufacturers built inventory to 2.27 months of shipments by March 2023.
+In 2008 to 2009 wholesale swung most. In COVID the largest swing was at the store end of the chain, the reverse of a classic bullwhip. In the chip shortage and restock, computers and electronics manufacturers built inventory to 2.27 months of shipments by March 2023.
 
-**7. Two chains up close.** Motor vehicle dealers are the one retail industry that amplifies: 1.53 in 1993 to 2004 and 1.26 since. CRS found the same and explained it by manufacturers pushing inventory onto dealers. For computers and electronics manufacturing since 2005, new-orders variance is 5.9 times production variance (ratio 0.17). The whip is real in that industry's order book, but it does not reach production. Transportation equipment shows the same gap (ratio 0.28 against orders).
+**7. Two chains up close.** Motor vehicle dealers are the one retail industry that clearly amplifies: 1.53 in 1993 to 2004 and 1.26 since. CRS found the same and explained it by manufacturers pushing inventory onto dealers. For transportation equipment since 2005, production variance is only 0.28 times new-orders variance. The whip is real in that industry's order book, but it does not reach production. The same comparison for computers and electronics is left out: FRED's notes say that industry's new-orders series has no semiconductor data, while its shipments include semiconductors, so the two series cover different industries.
 
 ## What a planner should take from this
 
-1. Measure amplification on unadjusted data at the level where inventory actually sits. Seasonally adjusted or year-over-year views overstate it.
-2. Inventory buffers work. Most retail and manufacturing industries absorb volatility, and wholesale is where it gets added back.
-3. Read the order book with care. In durable goods the largest swings are in new orders, not production, so order volatility overstates what plants will actually build and ship.
+1. Measure amplification on unadjusted data at the level where inventory actually sits. In this data, seasonally adjusted and year-over-year views show far more amplification than the unadjusted flows do.
+2. Retail inventory buffers work: most retail industries absorb volatility in every specification tried. Wholesale adds volatility back. Manufacturing absorbed it before 2005 and, under most settings, no longer does.
+3. Read the order book with care. In transportation equipment the largest swings are in new orders, not production, so order volatility overstates what plants will actually build and ship.
 
 ## Limitations
 
-- **Margins.** Census no longer publishes keyless monthly gross margins, so margin is a grid dimension. The manufacturing share of amplifying cells moves by 18% across the four margins.
+- **Margins.** Census no longer publishes keyless monthly gross margins, so margin is a grid dimension. The manufacturing share of amplifying cells moves by 22 percentage points across the four margins.
 - **Deflators.** CPI for retail and the all-commodities PPI elsewhere are crude next to the industry-matched BEA deflators CRS used.
 - **Sales as a stand-in for demand.** Where customers can backorder, sales understate demand volatility, which biases ratios upward (CRS make the same point).
 - **Coverage and vintage.** 44 industries instead of 74. The 1993 to 2004 numbers come from today's vintage of the data, not the one CRS downloaded, so revisions can explain part of any gap.
+- **Orders coverage.** Census new orders for computers and electronics exclude semiconductors (per the FRED notes on its new-orders and shipments series, listed in `docs/method.md`), so orders-based ratios for that industry are not reported.
 - **Chains are not closed.** Imports, exports and business buyers enter and leave between the retail, wholesale and manufacturing links.
 
 ## Sources

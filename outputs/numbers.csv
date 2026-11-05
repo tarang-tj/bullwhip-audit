@@ -4,7 +4,10 @@ n_ind_retail,6.0,int,retail industries in the panel
 n_ind_wholesale,18.0,int,wholesale industries in the panel
 n_ind_manufacturing,20.0,int,manufacturing industries in the panel
 n_ind_total,44.0,int,industries in the panel
-n_cells,11016.0,int,industry-level grid cells
+n_cells,9504.0,int,industry-level grid cells against sales
+n_cells_orders,1512.0,int,industry-level grid cells against new orders
+n_series_census,110.0,int,Census series (registry minus the two BLS price indexes)
+crs_paper_n_industries,74.0,int,industries in CRS 2007 (p.13)
 n_undefined,18.0,int,grid cells undefined because production was non-positive
 crs_paper_nsa_retail,0.14,pct,"CRS 2007 share of retail amplifying, NSA"
 crs_paper_sa_retail,1.0,pct,"CRS 2007 share of retail amplifying, SA"
@@ -24,11 +27,11 @@ rep_nsa_manufacturing,0.1,pct,"our share of manufacturing amplifying, 1993-2004,
 rep_sa_manufacturing,0.7,pct,"our share of manufacturing amplifying, 1993-2004, SA"
 rep_lo_manufacturing,0.1,pct,"manufacturing share, min over margin x deflation"
 rep_hi_manufacturing,0.45,pct,"manufacturing share, max over margin x deflation"
-robust_kept_manufacturing,0.41203703703703703,pct,manufacturing: share of seasonality-kept grid cells with ratio > 1
+robust_kept_manufacturing,0.5067708333333333,pct,manufacturing: share of seasonality-kept grid cells with ratio > 1
 robust_kept_retail,0.3140350877192982,pct,retail: share of seasonality-kept grid cells with ratio > 1
 robust_kept_wholesale,0.7152777777777778,pct,wholesale: share of seasonality-kept grid cells with ratio > 1
-robust_removed_manufacturing,0.7512345679012346,pct,manufacturing: share of seasonality-removed grid cells with ratio > 1
-robust_removed_retail,0.8290960451977402,pct,retail: share of seasonality-removed grid cells with ratio > 1
+robust_removed_manufacturing,0.9083333333333333,pct,manufacturing: share of seasonality-removed grid cells with ratio > 1
+robust_removed_retail,0.8234463276836158,pct,retail: share of seasonality-removed grid cells with ratio > 1
 robust_removed_wholesale,0.9560185185185185,pct,wholesale: share of seasonality-removed grid cells with ratio > 1
 sa_full_retail,0.8333333333333334,pct,"retail share amplifying, 1993-2025, SA"
 sa_full_wholesale,1.0,pct,"wholesale share amplifying, 1993-2025, SA"
@@ -38,9 +41,13 @@ cellmaj_retail,0.0,pct,retail: share of seasonality-kept spec cells where most i
 cellmaj_n_retail,0.0,int,retail: count of seasonality-kept spec cells where most industries amplify
 cellmaj_wholesale,0.90625,pct,wholesale: share of seasonality-kept spec cells where most industries amplify
 cellmaj_n_wholesale,87.0,int,wholesale: count of seasonality-kept spec cells where most industries amplify
-cellmaj_manufacturing,0.28125,pct,manufacturing: share of seasonality-kept spec cells where most industries amplify
-cellmaj_n_manufacturing,27.0,int,manufacturing: count of seasonality-kept spec cells where most industries amplify
-margin_swing_manufacturing,0.1836419753086419,pct,"manufacturing share range across the four margins, seasonality kept"
+cellmaj_manufacturing,0.5833333333333334,pct,manufacturing: share of seasonality-kept spec cells where most industries amplify
+cellmaj_n_manufacturing,56.0,int,manufacturing: count of seasonality-kept spec cells where most industries amplify
+mfg_maj_crs,7.0,int,manufacturing: seasonality-kept specs in the crs window where most amplify
+mfg_specs_crs,32.0,int,seasonality-kept specs in the crs window
+mfg_maj_post,28.0,int,manufacturing: seasonality-kept specs in the post window where most amplify
+mfg_specs_post,32.0,int,seasonality-kept specs in the post window
+margin_swing_manufacturing,0.2229166666666667,pts,"manufacturing share range across the four margins, seasonality kept"
 seas_rho,-0.6625792811839324,f2,"Spearman rho, seasonality vs log ratio, 1993-2025 NSA"
 seas_p,9.609220049528466e-07,p,p-value of that correlation
 seas_n,44.0,int,industries in that correlation
@@ -61,19 +68,20 @@ agg_manufacturing_lo,0.633233157642616,f2,95% block-bootstrap CI low
 agg_manufacturing_hi,0.6858802562719698,f2,95% block-bootstrap CI high
 roll_retail_2019,0.5887688853725784,f2,retail 60-month ratio ending 2019-12
 roll_retail_peak,0.7824448127221915,f2,retail 60-month ratio peak after 2020
-swing_gfc_retail,0.17218866307215538,pct,"I/S trough-to-peak swing, great recession, retail"
-swing_gfc_wholesale,0.2320096730034039,pct,"I/S trough-to-peak swing, great recession, wholesale"
-swing_gfc_manufacturing,0.21245818613748227,pct,"I/S trough-to-peak swing, great recession, manufacturing"
-swing_gfc_electronics,0.17767769400137476,pct,"I/S trough-to-peak swing, great recession, computers and electronics mfg"
-swing_covid_retail,0.40083411573617683,pct,"I/S trough-to-peak swing, covid collapse and rebound, retail"
-swing_covid_wholesale,0.32947309600857744,pct,"I/S trough-to-peak swing, covid collapse and rebound, wholesale"
-swing_covid_manufacturing,0.2782539860815504,pct,"I/S trough-to-peak swing, covid collapse and rebound, manufacturing"
-swing_covid_electronics,0.08120284802474192,pct,"I/S trough-to-peak swing, covid collapse and rebound, computers and electronics mfg"
-swing_chips_retail,0.16722081666716904,pct,"I/S trough-to-peak swing, chip shortage and restock, retail"
-swing_chips_wholesale,0.1443160657706487,pct,"I/S trough-to-peak swing, chip shortage and restock, wholesale"
-swing_chips_manufacturing,0.08902442654641549,pct,"I/S trough-to-peak swing, chip shortage and restock, manufacturing"
-swing_chips_electronics,0.2526419680735465,pct,"I/S trough-to-peak swing, chip shortage and restock, computers and electronics mfg"
+swing_gfc_retail,0.17218866307215538,pct,"I/S range (high minus low) / prior-year mean, great recession, retail"
+swing_gfc_wholesale,0.2320096730034039,pct,"I/S range (high minus low) / prior-year mean, great recession, wholesale"
+swing_gfc_manufacturing,0.21245818613748227,pct,"I/S range (high minus low) / prior-year mean, great recession, manufacturing"
+swing_gfc_electronics,0.17767769400137476,pct,"I/S range (high minus low) / prior-year mean, great recession, computers and electronics mfg"
+swing_covid_retail,0.40083411573617683,pct,"I/S range (high minus low) / prior-year mean, covid collapse and rebound, retail"
+swing_covid_wholesale,0.32947309600857744,pct,"I/S range (high minus low) / prior-year mean, covid collapse and rebound, wholesale"
+swing_covid_manufacturing,0.2782539860815504,pct,"I/S range (high minus low) / prior-year mean, covid collapse and rebound, manufacturing"
+swing_covid_electronics,0.08120284802474192,pct,"I/S range (high minus low) / prior-year mean, covid collapse and rebound, computers and electronics mfg"
+swing_chips_retail,0.16722081666716904,pct,"I/S range (high minus low) / prior-year mean, chip shortage and restock, retail"
+swing_chips_wholesale,0.1443160657706487,pct,"I/S range (high minus low) / prior-year mean, chip shortage and restock, wholesale"
+swing_chips_manufacturing,0.08902442654641549,pct,"I/S range (high minus low) / prior-year mean, chip shortage and restock, manufacturing"
+swing_chips_electronics,0.2526419680735465,pct,"I/S range (high minus low) / prior-year mean, chip shortage and restock, computers and electronics mfg"
 chips_elec_peak,2.2721104670985337,f2,electronics mfg I/S peak (2023-03)
+chips_elec_peak_ym,202303.0,ym,month of that peak
 chain_auto_dealers_crs,1.5295694218154101,f2,motor vehicles retail 441 crs vs sales
 chain_auto_dealers_post,1.2596599759188962,f2,motor vehicles retail 441 post vs sales
 chain_transport_orders_post,0.27605959567144,f2,motor vehicles manufacturing 36S post vs orders

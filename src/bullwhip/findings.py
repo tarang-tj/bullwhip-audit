@@ -64,7 +64,14 @@ def build() -> Numbers:
     for t in TIERS:
         n.add(f"n_ind_{t}", counts[t], "int", f"{t} industries in the panel")
     n.add("n_ind_total", counts.sum(), "int", "industries in the panel")
-    n.add("n_cells", len(g[g["level"] == "industry"]), "int", "industry-level grid cells")
+    cells_ind = g[g["level"] == "industry"]
+    n.add("n_cells", (cells_ind["demand"] == "sales").sum(), "int",
+          "industry-level grid cells against sales")
+    n.add("n_cells_orders", (cells_ind["demand"] == "orders").sum(), "int",
+          "industry-level grid cells against new orders")
+    n.add("n_series_census", sum(r["measure"] != "deflator" for r in reg), "int",
+          "Census series (registry minus the two BLS price indexes)")
+    n.add("crs_paper_n_industries", 74, "int", "industries in CRS 2007 (p.13)")
     n.add("n_undefined", (g["undefined"].fillna("") != "").sum(), "int",
           "grid cells undefined because production was non-positive")
 
@@ -84,7 +91,8 @@ def build() -> Numbers:
 
     # 2. robustness. Seasonal adjustment and 12-month differences both remove the seasonal
     # pattern, so cells split into "seasonality kept" (NSA, logdiff/diff) and "removed".
-    ind = g[g["level"] == "industry"].copy()
+    # sales demand only: the 7 durable groups also have orders cells, which would count twice
+    ind = g[(g["level"] == "industry") & (g["demand"] == "sales")].copy()
     ind["seasonality_kept"] = (~ind["sa"]) & (ind["transform"] != "yoy")
     kept, removed = ind[ind.seasonality_kept], ind[~ind.seasonality_kept]
     for label, part in (("kept", kept), ("removed", removed)):
@@ -104,13 +112,18 @@ def build() -> Numbers:
               f"{t}: share of seasonality-kept spec cells where most industries amplify")
         n.add(f"cellmaj_n_{t}", int((kc[t] > 0.5).sum()), "int",
               f"{t}: count of seasonality-kept spec cells where most industries amplify")
+    for window in ("crs", "post"):
+        w = kc.xs(window, level="window")["manufacturing"]
+        n.add(f"mfg_maj_{window}", int((w > 0.5).sum()), "int",
+              f"manufacturing: seasonality-kept specs in the {window} window where most amplify")
+        n.add(f"mfg_specs_{window}", len(w), "int", f"seasonality-kept specs in the {window} window")
     sens = []
     for dim in ("window", "margin", "deflate", "transform", "freq"):
         s = kept.groupby(dim)[["tier", "ratio"]].apply(share_amp)
         sens.append({"dimension": dim, **{t: float(s[t].max() - s[t].min()) for t in TIERS}})
     pd.DataFrame(sens).to_csv(OUT / "sensitivity.csv", index=False, float_format="%.6g")
     sens_df = pd.DataFrame(sens).set_index("dimension")
-    n.add("margin_swing_manufacturing", sens_df.loc["margin", "manufacturing"], "pct",
+    n.add("margin_swing_manufacturing", sens_df.loc["margin", "manufacturing"], "pts",
           "manufacturing share range across the four margins, seasonality kept")
 
     # 3. seasonality predicts smoothing (CRS hypothesis 1)
@@ -157,10 +170,12 @@ def _shocks(n: Numbers) -> None:
            "chip shortage and restock": "chips"}
     for r in st.itertuples():
         n.add(f"swing_{tag[r.shock]}_{key[r.tier]}", r.swing_pct / 100, "pct",
-              f"I/S trough-to-peak swing, {r.shock}, {r.tier}")
+              f"I/S range (high minus low) / prior-year mean, {r.shock}, {r.tier}")
     chip = st[(st["shock"] == "chip shortage and restock") &
               (st["tier"] == "computers and electronics mfg")].iloc[0]
     n.add("chips_elec_peak", chip.is_peak, "f2", f"electronics mfg I/S peak ({chip.peak_month})")
+    y, mo = chip.peak_month.split("-")
+    n.add("chips_elec_peak_ym", int(y) * 100 + int(mo), "ym", "month of that peak")
     ch = shocks.chain_table()
     ch.to_csv(OUT / "chains.csv", index=False, float_format="%.6g")
     pick = {("441", "crs", "sales"): "chain_auto_dealers_crs",
