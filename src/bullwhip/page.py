@@ -81,7 +81,7 @@ def build() -> str:
     page = (
         "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
         "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
-        "<title>Where the Bullwhip Cracks</title>"
+        "<title>Where the bullwhip shows up</title>"
         "<meta name=\"description\" content=\"A replication of Cachon, Randall and Schmidt (2007)"
         " on US Census supply chain data through 2025.\">"
         f"<style>{(WEB / 'style.css').read_text()}</style></head><body><main>"
