@@ -5,7 +5,7 @@ Does order volatility really grow at each step up a supply chain? This project t
 **Finding.** The 2007 pattern holds as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications; most retail industries amplify in none of them. Manufacturing changed: it mostly smoothed in 1993 to 2004 but amplifies under most settings since 2005. Remove seasonality and most industries in every tier look like amplifiers. In COVID, retail took the largest inventory swing of any tier.
 
 - Memo: [`docs/findings.md`](docs/findings.md)
-- Page: [`docs/index.html`](docs/index.html) (self-contained, four interactive charts)
+- Live page: https://tarang-tj.github.io/bullwhip-audit/ (built from `docs/index.html`, self-contained, four interactive charts)
 - Method notes and sources: [`docs/method.md`](docs/method.md)
 
 ## How it works
