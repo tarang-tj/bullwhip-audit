@@ -37,8 +37,11 @@ def transform(x: pd.Series, how: str = "logdiff") -> pd.Series:
 
 
 def deseasonalize(x: pd.Series) -> pd.Series:
-    """Residuals of x on 12 month dummies (same as OLS with intercept + 11 dummies)."""
-    return x - x.groupby(x.index.month).transform("mean")
+    """Residuals of x on period dummies (same as OLS with intercept + 11 month dummies).
+    Uses calendar quarter for quarterly data, detected from the index spacing."""
+    quarterly = len(x) > 1 and (x.index[1] - x.index[0]).days > 45
+    key = x.index.quarter if quarterly else x.index.month
+    return x - x.groupby(key).transform("mean")
 
 
 def window(x: pd.Series, start: str | None, end: str | None) -> pd.Series:

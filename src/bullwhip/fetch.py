@@ -5,6 +5,7 @@ data/manifest.json so a reader can confirm the exact bytes the numbers came from
 """
 from __future__ import annotations
 
+import functools
 import hashlib
 import io
 import json
@@ -53,8 +54,14 @@ def parse(body: bytes, sid: str) -> pd.Series:
     return s.dropna()
 
 
+@functools.lru_cache(maxsize=None)
+def _cached(sid: str, mtime: float) -> pd.Series:
+    """Parse a cached file once per modification time."""
+    return parse((RAW / f"{sid}.csv").read_bytes(), sid)
+
+
 def fetch(sid: str, refresh: bool = False) -> pd.Series:
-    """Return a FRED series, from cache unless refresh=True or no cache exists."""
+    """Return a FRED series (a copy), from cache unless refresh=True or no cache exists."""
     RAW.mkdir(parents=True, exist_ok=True)
     path = RAW / f"{sid}.csv"
     if refresh or not path.exists():
@@ -69,7 +76,7 @@ def fetch(sid: str, refresh: bool = False) -> pd.Series:
         }
         MANIFEST.write_text(json.dumps(dict(sorted(manifest.items())), indent=2) + "\n")
         time.sleep(1.0)  # be polite to FRED
-    return parse(path.read_bytes(), sid)
+    return _cached(sid, path.stat().st_mtime).copy()
 
 
 def verify_cache() -> list[str]:

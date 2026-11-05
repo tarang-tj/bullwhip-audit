@@ -1,0 +1,17 @@
+chain,tier,code,window,demand,ratio,bf_p
+motor vehicles,retail,441,crs,sales,1.52957,0.0139032
+motor vehicles,retail,441,post,sales,1.25966,0.225433
+motor vehicles,wholesale,4231,crs,sales,0.926981,0.82246
+motor vehicles,wholesale,4231,post,sales,1.00151,0.368008
+motor vehicles,manufacturing,36S,crs,sales,0.814586,0.541666
+motor vehicles,manufacturing,36S,crs,orders,0.595242,0.0330943
+motor vehicles,manufacturing,36S,post,sales,0.611449,0.000186032
+motor vehicles,manufacturing,36S,post,orders,0.27606,1.20705e-16
+electronics,wholesale,4236,crs,sales,0.904116,0.926535
+electronics,wholesale,4236,post,sales,0.913807,0.286828
+electronics,wholesale,4234,crs,sales,1.03209,0.993345
+electronics,wholesale,4234,post,sales,0.845279,0.26782
+electronics,manufacturing,34S,crs,sales,0.482429,0.00028009
+electronics,manufacturing,34S,crs,orders,0.401061,3.10688e-06
+electronics,manufacturing,34S,post,sales,0.420269,3.40624e-12
+electronics,manufacturing,34S,post,orders,0.170821,1.95337e-31

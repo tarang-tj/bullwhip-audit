@@ -1,0 +1,13 @@
+shock,tier,is_before,is_peak,peak_month,is_trough,trough_month,swing_pct
+great recession,retail,1.48339,1.62138,2008-12,1.36596,2009-08,17.2189
+great recession,wholesale,1.15006,1.41197,2009-01,1.14514,2008-07,23.201
+great recession,manufacturing,1.21566,1.46148,2009-04,1.2032,2008-07,21.2458
+great recession,computers and electronics mfg,1.36977,1.63278,2009-04,1.3894,2008-07,17.7678
+covid collapse and rebound,retail,1.45873,1.68057,2020-04,1.09586,2021-06,40.0834
+covid collapse and rebound,wholesale,1.34332,1.66299,2020-04,1.2204,2021-06,32.9473
+covid collapse and rebound,manufacturing,1.46647,1.87703,2020-04,1.46898,2021-01,27.8254
+covid collapse and rebound,computers and electronics mfg,1.80324,1.94466,2020-04,1.79823,2021-01,8.12028
+chip shortage and restock,retail,1.3369,1.31942,2023-06,1.09586,2021-06,16.7221
+chip shortage and restock,wholesale,1.37289,1.40253,2022-12,1.2044,2021-07,14.4316
+chip shortage and restock,manufacturing,1.614,1.61267,2023-04,1.46898,2021-01,8.90244
+chip shortage and restock,computers and electronics mfg,1.8757,2.27211,2023-03,1.79823,2021-01,25.2642

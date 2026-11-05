@@ -1,0 +1,113 @@
+id,tier,code,measure,title,rows,first,last
+RETAILSMNSA,retail,total,sales,Retailers Sales,416,1992-01-01,2026-08-01
+RETAILIMNSA,retail,total,inventory,Retailers Inventories,416,1992-01-01,2026-08-01
+WHLSLRSMNSA,wholesale,total,sales,Merchant Wholesalers Sales,416,1992-01-01,2026-08-01
+WHLSLRIMNSA,wholesale,total,inventory,Merchant Wholesalers Inventories,416,1992-01-01,2026-08-01
+UMTMVS,manufacturing,total,sales,Manufacturers' Value of Shipments: Total Manufacturing,417,1992-01-01,2026-09-01
+UMTMTI,manufacturing,total,inventory,Manufacturers' Total Inventories: Total Manufacturing,417,1992-01-01,2026-09-01
+UMTMNO,manufacturing,total,orders,Manufacturers' New Orders: Total Manufacturing,416,1992-02-01,2026-09-01
+S4231SM144NCEN,wholesale,4231,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Motor Vehicle and Motor Vehicle Parts and Supplies Sales",415,1992-01-01,2026-07-01
+I4231IM144NCEN,wholesale,4231,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Motor Vehicle and Motor Vehicle Parts and Supplies Inventories",415,1992-01-01,2026-07-01
+S4232SM144NCEN,wholesale,4232,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Furniture and Home Furnishings Sales",415,1992-01-01,2026-07-01
+I4232IM144NCEN,wholesale,4232,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Furniture and Home Furnishings Inventories",415,1992-01-01,2026-07-01
+S4233SM144NCEN,wholesale,4233,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Lumber and Other Construction Materials Sales",415,1992-01-01,2026-07-01
+I4233IM144NCEN,wholesale,4233,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Lumber and Other Construction Materials Inventories",415,1992-01-01,2026-07-01
+S4234SM144NCEN,wholesale,4234,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Professional and Commercial Equipment and Supplies Sales",415,1992-01-01,2026-07-01
+I4234IM144NCEN,wholesale,4234,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Professional and Commercial Equipment and Supplies Inventories",415,1992-01-01,2026-07-01
+S4235SM144NCEN,wholesale,4235,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Metals and Minerals, Except Petroleum Sales",415,1992-01-01,2026-07-01
+I4235IM144NCEN,wholesale,4235,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Metals and Minerals, Except Petroleum Inventories",415,1992-01-01,2026-07-01
+S4236SM144NCEN,wholesale,4236,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Household Appliances and Electrical and Electronic Goods Sales",415,1992-01-01,2026-07-01
+I4236IM144NCEN,wholesale,4236,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Household Appliances and Electrical and Electronic Goods Inventories",415,1992-01-01,2026-07-01
+S4237SM144NCEN,wholesale,4237,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Hardware, and Plumbing and Heating Equipment and Supplies Sales",415,1992-01-01,2026-07-01
+I4237IM144NCEN,wholesale,4237,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Hardware, and Plumbing and Heating Equipment and Supplies Inventories",415,1992-01-01,2026-07-01
+S4238SM144NCEN,wholesale,4238,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Machinery, Equipment, and Supplies Sales",415,1992-01-01,2026-07-01
+I4238IM144NCEN,wholesale,4238,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Machinery, Equipment, and Supplies Inventories",415,1992-01-01,2026-07-01
+S4239SM144NCEN,wholesale,4239,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Miscellaneous Durable Goods Sales",415,1992-01-01,2026-07-01
+I4239IM144NCEN,wholesale,4239,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Durable Goods: Miscellaneous Durable Goods Inventories",415,1992-01-01,2026-07-01
+S4241SM144NCEN,wholesale,4241,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Paper and Paper Products Sales",415,1992-01-01,2026-07-01
+I4241IM144NCEN,wholesale,4241,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Paper and Paper Products Inventories",415,1992-01-01,2026-07-01
+S4242SM144NCEN,wholesale,4242,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Drugs and Druggists' Sundries Sales",415,1992-01-01,2026-07-01
+I4242IM144NCEN,wholesale,4242,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Drugs and Druggists' Sundries Inventories",415,1992-01-01,2026-07-01
+S4243SM144NCEN,wholesale,4243,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Apparel, Piece Goods, and Notions Sales",415,1992-01-01,2026-07-01
+I4243IM144NCEN,wholesale,4243,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Apparel, Piece Goods, and Notions Inventories",415,1992-01-01,2026-07-01
+S4244SM144NCEN,wholesale,4244,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Grocery and Related Products Sales",415,1992-01-01,2026-07-01
+I4244IM144NCEN,wholesale,4244,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Grocery and Related Products Inventories",415,1992-01-01,2026-07-01
+S4245SM144NCEN,wholesale,4245,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Farm Product Raw Materials Sales",415,1992-01-01,2026-07-01
+I4245IM144NCEN,wholesale,4245,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Farm Product Raw Materials Inventories",415,1992-01-01,2026-07-01
+S4246SM144NCEN,wholesale,4246,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Chemicals and Allied Products Sales",415,1992-01-01,2026-07-01
+I4246IM144NCEN,wholesale,4246,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Chemicals and Allied Products Inventories",415,1992-01-01,2026-07-01
+S4247SM144NCEN,wholesale,4247,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Petroleum and Petroleum Products Sales",415,1992-01-01,2026-07-01
+I4247IM144NCEN,wholesale,4247,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Petroleum and Petroleum Products Inventories",415,1992-01-01,2026-07-01
+S4248SM144NCEN,wholesale,4248,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Beer, Wine, and Distilled Alcoholic Beverages Sales",415,1992-01-01,2026-07-01
+I4248IM144NCEN,wholesale,4248,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Beer, Wine, and Distilled Alcoholic Beverages Inventories",415,1992-01-01,2026-07-01
+S4249SM144NCEN,wholesale,4249,sales,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Miscellaneous Nondurable Goods Sales",415,1992-01-01,2026-07-01
+I4249IM144NCEN,wholesale,4249,inventory,"Merchant Wholesalers, Except Manufacturers' Sales Branches and Offices: Nondurable Goods: Miscellaneous Nondurable Goods Inventories",415,1992-01-01,2026-07-01
+MRTSSM441USN,retail,441,sales,Retail Sales: Motor Vehicle and Parts Dealers,416,1992-01-01,2026-08-01
+MRTSIM441USN,retail,441,inventory,Retail Inventories: Motor Vehicle and Parts Dealers,416,1992-01-01,2026-08-01
+MRTSSM4423XUSN,retail,4423X,sales,"Retail Sales: Furniture, Home Furnishings, Electronics, and Appliance Stores",416,1992-01-01,2026-08-01
+MRTSIM4423XUSN,retail,4423X,inventory,"Retail Inventories: Furniture, Home Furnishings, Electronics, and Appliance Stores",416,1992-01-01,2026-08-01
+MRTSSM444USN,retail,444,sales,Retail Sales: Building Materials and Garden Equipment and Supplies Dealers,416,1992-01-01,2026-08-01
+MRTSIM444USN,retail,444,inventory,Retail Inventories: Building Materials and Garden Equipment and Supplies Dealers,416,1992-01-01,2026-08-01
+MRTSSM445USN,retail,445,sales,Retail Sales: Food and Beverage Stores,416,1992-01-01,2026-08-01
+MRTSIM445USN,retail,445,inventory,Retail Inventories: Food and Beverage Stores,416,1992-01-01,2026-08-01
+MRTSSM448USN,retail,448,sales,Retail Sales: Clothing and Clothing Accessory Stores,416,1992-01-01,2026-08-01
+MRTSIM448USN,retail,448,inventory,Retail Inventories: Clothing and Clothing Accessory Stores,416,1992-01-01,2026-08-01
+MRTSSM452USN,retail,452,sales,Retail Sales: General Merchandise Stores,416,1992-01-01,2026-08-01
+MRTSIM452USN,retail,452,inventory,Retail Inventories: General Merchandise Stores,416,1992-01-01,2026-08-01
+U31SVS,manufacturing,31S,sales,Manufacturers' Value of Shipments: Primary Metals,417,1992-01-01,2026-09-01
+U31STI,manufacturing,31S,inventory,Manufacturers' Total Inventories: Primary Metals,417,1992-01-01,2026-09-01
+U31SNO,manufacturing,31S,orders,Manufacturers' New Orders: Primary Metals,416,1992-02-01,2026-09-01
+U32SVS,manufacturing,32S,sales,Manufacturers' Value of Shipments: Fabricated Metal Products,417,1992-01-01,2026-09-01
+U32STI,manufacturing,32S,inventory,Manufacturers' Total Inventories: Fabricated Metal Products,417,1992-01-01,2026-09-01
+U32SNO,manufacturing,32S,orders,Manufacturers' New Orders: Fabricated Metal Products,416,1992-02-01,2026-09-01
+U33SVS,manufacturing,33S,sales,Manufacturers' Value of Shipments: Machinery,417,1992-01-01,2026-09-01
+U33STI,manufacturing,33S,inventory,Manufacturers' Total Inventories: Machinery,417,1992-01-01,2026-09-01
+U33SNO,manufacturing,33S,orders,Manufacturers' New Orders: Machinery,416,1992-02-01,2026-09-01
+U34SVS,manufacturing,34S,sales,Manufacturers' Value of Shipments: Computers and Electronic Products,417,1992-01-01,2026-09-01
+U34STI,manufacturing,34S,inventory,Manufacturers' Total Inventories: Computers and Electronic Products,417,1992-01-01,2026-09-01
+U34SNO,manufacturing,34S,orders,Manufacturers' New Orders: Computers and Electronic Products,416,1992-02-01,2026-09-01
+U35SVS,manufacturing,35S,sales,"Manufacturers' Value of Shipments: Electrical Equipment, Appliances and Components",417,1992-01-01,2026-09-01
+U35STI,manufacturing,35S,inventory,"Manufacturers' Total Inventories: Electrical Equipment, Appliances and Components",417,1992-01-01,2026-09-01
+U35SNO,manufacturing,35S,orders,"Manufacturers' New Orders: Electrical Equipment, Appliances and Components",416,1992-02-01,2026-09-01
+U36SVS,manufacturing,36S,sales,Manufacturers' Value of Shipments: Transportation Equipment,417,1992-01-01,2026-09-01
+U36STI,manufacturing,36S,inventory,Manufacturers' Total Inventories: Transportation Equipment,417,1992-01-01,2026-09-01
+U36SNO,manufacturing,36S,orders,Manufacturers' New Orders: Transportation Equipment,416,1992-02-01,2026-09-01
+U37SVS,manufacturing,37S,sales,Manufacturers' Value of Shipments: Furniture and Related Products,417,1992-01-01,2026-09-01
+U37STI,manufacturing,37S,inventory,Manufacturers' Total Inventories: Furniture and Related Products,417,1992-01-01,2026-09-01
+U37SNO,manufacturing,37S,orders,Manufacturers' New Orders: Furniture and Related Products,416,1992-02-01,2026-09-01
+U39SVS,manufacturing,39S,sales,Manufacturers' Value of Shipments: Miscellaneous Products,417,1992-01-01,2026-09-01
+U39STI,manufacturing,39S,inventory,Manufacturers' Total Inventories: Miscellaneous Products,417,1992-01-01,2026-09-01
+U11SVS,manufacturing,11S,sales,Manufacturers' Value of Shipments: Food Products,417,1992-01-01,2026-09-01
+U11STI,manufacturing,11S,inventory,Manufacturers' Total Inventories: Food Products,417,1992-01-01,2026-09-01
+U12SVS,manufacturing,12S,sales,Manufacturers' Value of Shipments: Beverage and Tobacco Products,417,1992-01-01,2026-09-01
+U12STI,manufacturing,12S,inventory,Manufacturers' Total Inventories: Beverage and Tobacco Products,417,1992-01-01,2026-09-01
+U13SVS,manufacturing,13S,sales,Manufacturers' Value of Shipments: Textile Mills,417,1992-01-01,2026-09-01
+U13STI,manufacturing,13S,inventory,Manufacturers' Total Inventories: Textile Mills,417,1992-01-01,2026-09-01
+U14SVS,manufacturing,14S,sales,Manufacturers' Value of Shipments: Textile Products,417,1992-01-01,2026-09-01
+U14STI,manufacturing,14S,inventory,Manufacturers' Total Inventories: Textile Products,417,1992-01-01,2026-09-01
+U15SVS,manufacturing,15S,sales,Manufacturers' Value of Shipments: Apparel,417,1992-01-01,2026-09-01
+U15STI,manufacturing,15S,inventory,Manufacturers' Total Inventories: Apparel,417,1992-01-01,2026-09-01
+U16SVS,manufacturing,16S,sales,Manufacturers' Value of Shipments: Leather and Allied Products,417,1992-01-01,2026-09-01
+U16STI,manufacturing,16S,inventory,Manufacturers' Total Inventories: Leather and Allied Products,417,1992-01-01,2026-09-01
+U21SVS,manufacturing,21S,sales,Manufacturers' Value of Shipments: Wood Products,417,1992-01-01,2026-09-01
+U21STI,manufacturing,21S,inventory,Manufacturers' Total Inventories: Wood Products,417,1992-01-01,2026-09-01
+U22SVS,manufacturing,22S,sales,Manufacturers' Value of Shipments: Paper Products,417,1992-01-01,2026-09-01
+U22STI,manufacturing,22S,inventory,Manufacturers' Total Inventories: Paper Products,417,1992-01-01,2026-09-01
+U24SVS,manufacturing,24S,sales,Manufacturers' Value of Shipments: Petroleum and Coal Products,417,1992-01-01,2026-09-01
+U24STI,manufacturing,24S,inventory,Manufacturers' Total Inventories: Petroleum and Coal Products,417,1992-01-01,2026-09-01
+U25SVS,manufacturing,25S,sales,Manufacturers' Value of Shipments: Chemical Products,417,1992-01-01,2026-09-01
+U25STI,manufacturing,25S,inventory,Manufacturers' Total Inventories: Chemical Products,417,1992-01-01,2026-09-01
+U26SVS,manufacturing,26S,sales,Manufacturers' Value of Shipments: Plastics and Rubber Products,417,1992-01-01,2026-09-01
+U26STI,manufacturing,26S,inventory,Manufacturers' Total Inventories: Plastics and Rubber Products,417,1992-01-01,2026-09-01
+U27SVS,manufacturing,27S,sales,Manufacturers' Value of Shipments: Nonmetallic Mineral Products,417,1992-01-01,2026-09-01
+U27STI,manufacturing,27S,inventory,Manufacturers' Total Inventories: Nonmetallic Mineral Products,417,1992-01-01,2026-09-01
+RETAILSMSA,retail,total,sa_sales,Retailers Sales,416,1992-01-01,2026-08-01
+WHLSLRSMSA,wholesale,total,sa_sales,Merchant Wholesalers Sales,416,1992-01-01,2026-08-01
+AMTMVS,manufacturing,total,sa_sales,Manufacturers' Value of Shipments: Total Manufacturing,417,1992-01-01,2026-09-01
+A34SVS,computers and electronics mfg,total,sa_sales,Manufacturers' Value of Shipments: Computers and Electronic Products,417,1992-01-01,2026-09-01
+RETAILIMSA,retail,total,sa_inventory,Retailers Inventories,416,1992-01-01,2026-08-01
+WHLSLRIMSA,wholesale,total,sa_inventory,Merchant Wholesalers Inventories,416,1992-01-01,2026-08-01
+AMTMTI,manufacturing,total,sa_inventory,Manufacturers' Total Inventories: Total Manufacturing,417,1992-01-01,2026-09-01
+A34STI,computers and electronics mfg,total,sa_inventory,Manufacturers' Total Inventories: Computers and Electronic Products,417,1992-01-01,2026-09-01
+CPIAUCNS,all,total,deflator,Consumer Price Index for All Urban Consumers: All Items in U.S. City Average,1364,1913-01-01,2026-09-01
+PPIACO,all,total,deflator,Producer Price Index by Commodity: All Commodities,1365,1913-01-01,2026-09-01
