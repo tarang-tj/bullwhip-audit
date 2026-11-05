@@ -1,0 +1,15 @@
+[project]
+name = "bullwhip-audit"
+version = "0.1.0"
+description = "Where US order volatility actually amplifies: a replication and extension of Cachon, Randall and Schmidt (2007) on Census data, 1992-2026"
+requires-python = ">=3.12"
+dependencies = ["pandas", "numpy", "scipy", "matplotlib"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "playwright"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
