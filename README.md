@@ -4,7 +4,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/hero-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/img/hero-light.svg">
-  <img src="docs/img/hero-dark.svg" width="100%" alt="bullwhip-audit: wholesale amplifies demand in 87 of 96 specifications">
+  <img src="docs/img/hero-dark.svg" width="100%" alt="bullwhip-audit: with seasonality kept, wholesale amplifies demand in 87 of 96 specifications">
 </picture>
 
 [![gate](https://github.com/tarang-tj/bullwhip-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/tarang-tj/bullwhip-audit/actions/workflows/ci.yml)
