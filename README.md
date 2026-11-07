@@ -1,12 +1,26 @@
 # bullwhip-audit
 
-Does order volatility really grow at each step up a supply chain? This project tests the bullwhip effect on 34 years of US Census retail, wholesale and manufacturing data. It replicates Cachon, Randall and Schmidt (2007) and extends the test through 2025.
+<!-- Hero card: rendered by tarang-tj/tarang-tj (node scripts/render-repo-hero.mjs bullwhip docs/img), same number as the profile tile. -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/hero-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/img/hero-light.svg">
+  <img src="docs/img/hero-dark.svg" width="100%" alt="bullwhip-audit: wholesale amplifies demand in 87 of 96 specifications">
+</picture>
 
-**Finding.** The 2007 pattern holds as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications; most retail industries amplify in none of them. Manufacturing changed: it mostly smoothed in 1993 to 2004 but amplifies under most settings since 2005. Remove seasonality and most industries in every tier look like amplifiers. In COVID, retail took the largest inventory swing of any tier.
+[![gate](https://github.com/tarang-tj/bullwhip-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/tarang-tj/bullwhip-audit/actions/workflows/ci.yml)
+[![live page](https://img.shields.io/badge/live-page-f0a500)](https://tarang-tj.github.io/bullwhip-audit/)
+[![license](https://img.shields.io/github/license/tarang-tj/bullwhip-audit)](LICENSE)
+[![data](https://img.shields.io/badge/data-US%20Census%20via%20FRED-555)](docs/method.md)
 
-- Memo: [`docs/findings.md`](docs/findings.md)
-- Live page: https://tarang-tj.github.io/bullwhip-audit/ (built from `docs/index.html`, self-contained, four interactive charts)
-- Method notes and sources: [`docs/method.md`](docs/method.md)
+**Does order volatility really grow at each step up a supply chain?** A replication of Cachon, Randall and Schmidt (2007) on 34 years of US Census retail, wholesale and manufacturing data, extended through 2025. Keep the seasonal pattern in and most wholesale industries amplify in 87 of 96 measurement specifications, while most retail industries amplify in none. Take seasonality out and most industries in every tier look like amplifiers.
+
+[![Share of grid cells where an industry amplifies, seasonality kept vs removed, for retail, wholesale and manufacturing](docs/img/chart-split.png)](https://tarang-tj.github.io/bullwhip-audit/)
+
+**[Live page](https://tarang-tj.github.io/bullwhip-audit/)** · [Findings memo](docs/findings.md) · [Method and sources](docs/method.md)
+
+## Findings
+
+The 2007 pattern holds as long as the seasonal pattern stays in the data. Most wholesale industries amplify in 87 of 96 measurement specifications; most retail industries amplify in none of them. Manufacturing changed: it mostly smoothed in 1993 to 2004 but amplifies under most settings since 2005. Remove seasonality and most industries in every tier look like amplifiers. In COVID, retail took the largest inventory swing of any tier. Full memo: [`docs/findings.md`](docs/findings.md).
 
 ## How it works
 
