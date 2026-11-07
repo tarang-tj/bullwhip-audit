@@ -1,0 +1,21 @@
+name: gate
+# Runs `make gate` (lint, tests, reconcile, memo check, browser probe) on a clean
+# checkout. The raw Census files are committed, so no network fetch is needed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m venv .venv && .venv/bin/pip install -e ".[dev]"
+      - run: .venv/bin/playwright install --with-deps chromium
+      - run: make gate
