@@ -38,3 +38,10 @@ Wholesale `S{naics}SM144NCEN` / `I{naics}IM144NCEN`. Retail `MRTSSM{naics}USN` /
 ## Orders coverage (checked 2026-11-05)
 
 FRED's note on `U34SNO` (computers and electronics new orders) says: "Data on New Orders for the Semiconductor Industry are not available." Its note on `U34SVS` (shipments) says semiconductor shipments "are included in Computers and Electronic Products." The two series cover different industries, so the memo reports no orders-based ratio for 34S. `U36SNO` (transportation equipment) carries no such note.
+
+## Live panel (added 2026-11-11)
+
+`src/bullwhip/live.py` downloads the current vintage of the six aggregate series (retail, merchant wholesale and manufacturing sales and inventories, not seasonally adjusted) into `data/live`, pinned by its own sha256 manifest. It writes the trailing 60-month ratio from 2025-12 onward to `outputs/live.csv`. Its 2025-12 row equals the study's last rolling value when Census has not revised history. It also recomputes each tier's 1993 to 2025 aggregate ratio on the new vintage; a move larger than 0.005 opens an issue, and the findings are not re-run automatically. A month counts as published for a tier when FRED has both its sales and inventories.
+
+On 2026-11-11 FRED started dropping requests that sent this project's old User-Agent ("bullwhip-audit/0.1 (research script)") while serving Python's default agent, so `fetch.py` now sends the default.
+

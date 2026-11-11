@@ -104,7 +104,7 @@
   // 4. rolling 60-month ratio, aggregate tiers
   (function () {
     const f = frame("chart-rolling", 260);
-    const pts = D.rolling, n = pts.length;
+    const live = D.live || [], pts = D.rolling.concat(live), n = pts.length, s0 = D.rolling.length - 1;
     const x = (i) => f.m.l + i / (n - 1) * (f.w - f.m.l - f.m.r);
     const y = (v) => f.m.t + (1.3 - v) / (1.3 - 0.3) * (f.h - f.m.t - f.m.b);
     yAxis(f, y, [0.4, 0.6, 0.8, 1, 1.2], (v) => v.toFixed(1));
@@ -114,10 +114,23 @@
         el("text", { x: x(i), y: f.h - 14, class: "axis", "text-anchor": "middle" }, f.svg)
           .textContent = p.date.slice(0, 4);
     });
+    const path = (t, a, b) => {  // a null lifts the pen, so gaps stay gaps
+      let up = true;
+      return pts.slice(a, b + 1).map((p, k) => {
+        if (p[t] == null) { up = true; return ""; }
+        const c = up ? "M" : "L"; up = false;
+        return `${c}${x(a + k).toFixed(1)},${y(p[t]).toFixed(1)}`;
+      }).join("");
+    };
     TIERS.forEach((t) => {
-      const d = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p[t]).toFixed(1)}`).join("");
-      el("path", { d, stroke: color(t), class: "line" }, f.svg);
+      el("path", { d: path(t, 0, s0), stroke: color(t), class: "line" }, f.svg);
+      if (live.length) el("path", { d: path(t, s0, n - 1), stroke: color(t), class: "line live" }, f.svg);
     });
+    if (live.length) {  // months after the study window, current Census vintage
+      el("line", { x1: x(s0), x2: x(s0), y1: f.m.t, y2: f.h - f.m.b, class: "ref" }, f.svg);
+      el("text", { x: x(s0) - 4, y: f.m.t + 10, class: "axis", "text-anchor": "end" }, f.svg)
+        .textContent = "study ends";
+    }
     const cross = el("line", { y1: f.m.t, y2: f.h - f.m.b, class: "cross", visibility: "hidden" }, f.svg);
     const hit = el("rect", { x: f.m.l, y: f.m.t, width: f.w - f.m.l - f.m.r,
       height: f.h - f.m.t - f.m.b, fill: "transparent" }, f.svg);
@@ -128,7 +141,8 @@
       cross.setAttribute("visibility", "visible");
       const p = pts[i];
       tip.innerHTML = `<b>60 months to ${p.date.slice(0, 7)}</b><br>` +
-        TIERS.map((t) => `${t}: ${p[t].toFixed(2)}`).join("<br>");
+        TIERS.map((t) => `${t}: ${p[t] == null ? "not yet published" : p[t].toFixed(2)}`).join("<br>") +
+        (i > s0 ? "<br><i>after the study window, current vintage</i>" : "");
       tip.hidden = false;
       tip.style.left = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8) + "px";
       tip.style.top = (e.clientY + 14) + "px";

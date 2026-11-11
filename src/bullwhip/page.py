@@ -11,6 +11,7 @@ import markdown
 import pandas as pd
 
 from src.bullwhip.fetch import ROOT
+from src.bullwhip.hero import HERO_CSS, HERO_JS, build_hero
 from src.bullwhip.registry import load
 
 WEB = ROOT / "web"
@@ -27,7 +28,8 @@ FIGS = {
     "season": (("Across: share of demand variance explained by the calendar month. Up: "
                 "amplification ratio, log scale. More seasonal demand, lower ratio. Each dot is "
                 "one industry."), None),
-    "rolling": ("Aggregate amplification ratio over trailing 60-month windows.", None),
+    "rolling": (("Aggregate amplification ratio over trailing 60-month windows. Dashed, after the "
+                 "study window: the current Census vintage, refreshed monthly."), None),
 }
 
 
@@ -52,9 +54,17 @@ def data() -> dict:
     roll = pd.read_csv(ROOT / "outputs" / "rolling.csv").dropna()
     roll = [{"date": r["observation_date"], **{t: round(r[t], 4) for t in TIERS}}
             for _, r in roll.iterrows()]
+    live = []
+    lp = ROOT / "outputs" / "live.csv"
+    if lp.exists():  # months after the study window, current vintage (src/bullwhip/live.py)
+        lv = pd.read_csv(lp)
+        lv = lv[lv["observation_date"] > roll[-1]["date"]]  # the study's months are already drawn
+        live = [{"date": r["observation_date"],
+                 **{t: (None if pd.isna(r[t]) else round(r[t], 4)) for t in TIERS}}
+                for _, r in lv.iterrows()]
     split = {t: {"kept": nums[f"robust_kept_{t}"], "removed": nums[f"robust_removed_{t}"]}
              for t in TIERS}
-    return {"industries": inds, "rolling": roll, "split": split}
+    return {"industries": inds, "rolling": roll, "live": live, "split": split}
 
 
 def figure(key: str) -> str:
@@ -78,17 +88,17 @@ def build() -> str:
         if marker not in body:
             raise KeyError(f"figure marker {marker} missing from memo")
         body = body.replace(marker, figure(key))
+    body = body.replace("<h1>", '<h2 class="memo-title">', 1).replace("</h1>", "</h2>", 1)
     page = (
         "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
         "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
         "<title>Where the bullwhip shows up</title>"
         "<meta name=\"description\" content=\"A replication of Cachon, Randall and Schmidt (2007)"
         " on US Census supply chain data through 2025.\">"
-        f"<style>{(WEB / 'style.css').read_text()}</style></head><body><main>"
-        "<div class=\"kicker\">Supply chain research</div>"
-        f"{body}</main><div id=\"tip\" hidden></div>"
+        f"<style>{(WEB / 'style.css').read_text()}{HERO_CSS}</style></head><body><main>"
+        f"{build_hero()}{body}</main><div id=\"tip\" hidden></div>"
         f"<script>window.DATA={json.dumps(data(), separators=(',', ':'))};</script>"
-        f"<script>{(WEB / 'charts.js').read_text()}</script></body></html>\n")
+        f"<script>{(WEB / 'charts.js').read_text()}{HERO_JS}</script></body></html>\n")
     OUT.write_text(page)
     return page
 

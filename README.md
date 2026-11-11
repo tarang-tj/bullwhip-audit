@@ -31,8 +31,15 @@ FRED (keyless CSV, 112 Census series) -> data/raw + sha256 manifest
   -> grid.py       11,880 rows (11,016 industry cells): window x margin x deflator x transform x frequency x adjustment
   -> findings.py   every printed number -> outputs/numbers.csv
   -> memo.py       docs/findings.md from a template; numbers come only from numbers.csv
-  -> page.py       docs/index.html
+  -> page.py       docs/index.html (first screen: hero.py)
+
+monthly (.github/workflows/refresh.yml, the 20th):
+FRED current vintage of the 6 aggregate series -> data/live + its own sha256 manifest
+  -> live.py       60-month ratio past the study window -> outputs/live.csv
+  -> page.py + make gate, then one commit; a failure or a Census revision opens an issue
 ```
+
+The findings stay frozen on the 2026-11-05 vintage and the 1993 to 2025 window. Only the live panel moves: the page says which Census month it runs through, and the rolling chart continues past 2025 as a dashed line.
 
 ## Reproduce
 

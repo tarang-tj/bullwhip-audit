@@ -9,6 +9,7 @@ import functools
 import hashlib
 import io
 import json
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -21,7 +22,9 @@ ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"
 MANIFEST = ROOT / "data" / "manifest.json"
 URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}"
-UA = "bullwhip-audit/0.1 (research script)"
+# Python's default urllib agent. Since 2026-11-11 FRED drops HTTP/2 streams that send the old
+# custom agent ("bullwhip-audit/0.1 (research script)") while it serves the default one.
+UA = f"Python-urllib/{sys.version_info.major}.{sys.version_info.minor}"
 
 
 def _download(sid: str, retries: int = 3) -> bytes:
