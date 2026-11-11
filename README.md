@@ -14,7 +14,7 @@
 
 **Does order volatility really grow at each step up a supply chain?** A replication of Cachon, Randall and Schmidt (2007) on 34 years of US Census retail, wholesale and manufacturing data, extended through 2025. Keep the seasonal pattern in and most wholesale industries amplify in 87 of 96 measurement specifications, while most retail industries amplify in none. Take seasonality out and most industries in every tier look like amplifiers.
 
-[![Share of grid cells where an industry amplifies, seasonality kept vs removed, for retail, wholesale and manufacturing](docs/img/chart-split.png)](https://tarang-tj.github.io/bullwhip-audit/)
+[![44 industries slide across the line at 1 when seasonality is taken out: 13 amplify with seasons kept, 38 with them removed](docs/img/seasons.gif)](https://tarang-tj.github.io/bullwhip-audit/)
 
 **[Live page](https://tarang-tj.github.io/bullwhip-audit/)** · [Findings memo](docs/findings.md) · [Method and sources](docs/method.md)
 
