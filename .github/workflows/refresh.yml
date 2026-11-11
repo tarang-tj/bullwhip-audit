@@ -75,7 +75,7 @@ jobs:
           title="Monthly refresh failed"
           { echo "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"; echo;
             echo "Nothing was committed. The live panel keeps its last good month."; echo;
-            cat report.md 2>/dev/null; } > failure.md
+            cat report.md 2>/dev/null || echo "No report: the download step failed before writing one."; } > failure.md
           n=$(gh issue list --state open --search "in:title \"$title\"" --json number -q '.[0].number')
           if [ -n "$n" ]; then gh issue comment "$n" --body-file failure.md; else gh issue create --title "$title" --body-file failure.md; fi
       - run: cat report.md >> "$GITHUB_STEP_SUMMARY"
