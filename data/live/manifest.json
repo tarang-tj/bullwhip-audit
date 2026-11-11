@@ -1,0 +1,38 @@
+{
+  "RETAILIMNSA": {
+    "bytes": 7517,
+    "last": "2026-08",
+    "sha256": "d69ffc9048bac9a5508b39cdcb7956c1659f6efedad2c29fad88bc3f8c066d96",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RETAILIMNSA"
+  },
+  "RETAILSMNSA": {
+    "bytes": 7517,
+    "last": "2026-08",
+    "sha256": "22e3484e8958ad2f806ee245fb0ad7fc952fee3a919f93c06e8de1706a1ed648",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=RETAILSMNSA"
+  },
+  "UMTMTI": {
+    "bytes": 7530,
+    "last": "2026-09",
+    "sha256": "17339ef44e776b020d32bdf9a27f71c1456a8cd07a4a2d309e566d9ea94aa0f7",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UMTMTI"
+  },
+  "UMTMVS": {
+    "bytes": 7530,
+    "last": "2026-09",
+    "sha256": "04d5dc2bd30063784fe16a1e6b274e3da9adc0b6ddf8a711e4522205f60b6d4c",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UMTMVS"
+  },
+  "WHLSLRIMNSA": {
+    "bytes": 7517,
+    "last": "2026-08",
+    "sha256": "f3bbab12bf863080a85e2a1a40e91da02abd8d48b8093515707a89e5d1caab04",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WHLSLRIMNSA"
+  },
+  "WHLSLRSMNSA": {
+    "bytes": 7517,
+    "last": "2026-08",
+    "sha256": "1a6e0de3e7c81ca296936de486206e9db793007c359be1efe79f3f9aa76273d8",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WHLSLRSMNSA"
+  }
+}
